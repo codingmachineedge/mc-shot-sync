@@ -94,6 +94,9 @@ mc-shot-sync init --name my-mc-shots --repo-dir ~/MinecraftShots
 # Watch a specific folder (e.g. a modded instance)
 mc-shot-sync init --watch "~/.local/share/PrismLauncher/instances/Fabric/.minecraft/screenshots"
 
+# Create the screenshots repo as PRIVATE instead of public
+mc-shot-sync init --name my-mc-shots --private
+
 # Use a repo you already created (no gh needed)
 mc-shot-sync init --remote https://github.com/you/my-mc-shots.git
 

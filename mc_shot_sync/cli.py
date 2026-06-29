@@ -71,9 +71,10 @@ def cmd_init(args: argparse.Namespace) -> int:
         print(f"Remote set to: {remote}")
     elif not remote and not args.no_create:
         name = args.name or repo_dir.name
-        print(f"Creating PUBLIC GitHub repo '{name}' via gh ...")
+        visibility = "PRIVATE" if args.private else "PUBLIC"
+        print(f"Creating {visibility} GitHub repo '{name}' via gh ...")
         try:
-            remote = gitpush.gh_create_public_repo(repo_dir, name)
+            remote = gitpush.gh_create_repo(repo_dir, name, private=args.private)
             print(f"Created: {remote}")
         except gitpush.GitError as e:
             print(f"\nCould not create the GitHub repo automatically:\n{e}\n", file=sys.stderr)
@@ -175,6 +176,7 @@ def build_parser() -> argparse.ArgumentParser:
     pi.add_argument("--repo-dir", help="local folder for the screenshot repo")
     pi.add_argument("--name", help="GitHub repo name to create (default: repo dir name)")
     pi.add_argument("--remote", help="use this existing git remote URL instead of creating one")
+    pi.add_argument("--private", action="store_true", help="create the GitHub repo as private (default: public)")
     pi.add_argument("--no-create", action="store_true", help="do not create a GitHub repo")
     pi.set_defaults(func=cmd_init)
 

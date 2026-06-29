@@ -59,10 +59,11 @@ def set_remote(repo_dir: Path, url: str) -> None:
         _run(["git", "remote", "add", "origin", url], cwd=repo_dir)
 
 
-def gh_create_public_repo(repo_dir: Path, name: str) -> str:
-    """Create a PUBLIC GitHub repo for repo_dir via gh and return its URL.
+def gh_create_repo(repo_dir: Path, name: str, private: bool = False) -> str:
+    """Create a GitHub repo for repo_dir via gh and return its URL.
 
-    Uses --source so gh wires up the 'origin' remote automatically.
+    Public by default; pass private=True for a private repo. Uses --source so
+    gh wires up the 'origin' remote automatically.
     """
     if not have("gh"):
         raise GitError("GitHub CLI 'gh' is not installed. See https://cli.github.com/")
@@ -73,7 +74,7 @@ def gh_create_public_repo(repo_dir: Path, name: str) -> str:
     _run(
         [
             "gh", "repo", "create", name,
-            "--public",
+            "--private" if private else "--public",
             "--source", str(repo_dir),
             "--remote", "origin",
         ],
