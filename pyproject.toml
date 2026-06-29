@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mc-shot-sync"
+version = "1.0.0"
+description = "Auto-detect new Minecraft screenshots, copy to the clipboard, and git-push them to a public GitHub repo. Cross-platform (Windows + Linux + macOS) with a system-tray GUI."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "mc-shot-sync contributors" }]
+keywords = ["minecraft", "screenshots", "clipboard", "git", "watcher", "tray"]
+dependencies = [
+    "watchdog>=3.0",
+    "pystray>=0.19",
+    "Pillow>=9.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/codingmachineedge/mc-shot-sync"
+
+[project.scripts]
+mc-shot-sync = "mc_shot_sync.cli:main"
+
+[project.gui-scripts]
+mc-shot-sync-tray = "mc_shot_sync.tray:run_tray"
+
+[tool.setuptools]
+packages = ["mc_shot_sync"]

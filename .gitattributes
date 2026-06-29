@@ -1,0 +1,8 @@
+# Normalize line endings. Shell scripts MUST stay LF or they break on Linux.
+* text=auto eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+# Windows-only scripts keep CRLF
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.bat text eol=crlf
