@@ -81,7 +81,7 @@ if ($userPath -notlike "*$binDir*") {
 if ($env:MCSS_NOINIT -ne "1") {
     Say "Running setup (detect screenshots, create the public GitHub repo)..."
     & $exeTarget init
-    if ($LASTEXITCODE -ne 0) { Warn "init did not finish — re-run 'mc-shot-sync init' after fixing the issue above." }
+    if ($LASTEXITCODE -ne 0) { Warn "init did not finish - re-run 'mc-shot-sync init' after fixing the issue above." }
 }
 
 Say "Done!"
